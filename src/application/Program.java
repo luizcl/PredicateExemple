@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 
 import entities.Product;
 
@@ -19,12 +20,13 @@ public class Program {
 		list.add(new Product("Tablet", 250.50));
 		list.add(new Product("HD Case", 80.90));
 		
-		//Reference method
-		list.removeIf(Product::productPredicate);
+		//Declared lambda expression
+		Predicate<Product> pred = (p -> p.getPrice() >= 100);
 		
-		for(Product p : list) {
-			System.out.println(p);
-		}
+		list.removeIf(pred);
+		
+		//Mind blowing
+		list.forEach(System.out::println);
 		
 	}
 	
